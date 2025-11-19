@@ -1,0 +1,41 @@
+# Implementation Plan - Winamp Clone Enhancements
+
+The goal is to enhance the existing [main.py](file:///c:/Projects/VlcAmp/antigravity/main.py) Winamp clone by converting the Stop button to a Pause button and adding video playback capabilities.
+
+## Proposed Changes
+
+### [main.py](file:///c:/Projects/VlcAmp/antigravity/main.py)
+
+#### [MODIFY] [main.py](file:///c:/Projects/VlcAmp/antigravity/main.py)
+
+1.  **Video Support**:
+    *   Remove `--no-video` from `vlc.Instance` initialization.
+    *   Add a `tk.Frame` named `self.video_frame` at the top of the UI (background black).
+    *   In [on_drop](file:///c:/Projects/VlcAmp/antigravity/main.py#102-110), check the file extension.
+        *   If it's a video file (e.g., .mp4, .mkv, .avi), pack `self.video_frame` at the top and set the VLC player's window handle to this frame's ID using `self.player.set_hwnd()`.
+        *   If it's an audio file, unpack `self.video_frame` (hide it).
+
+2.  **Stop to Pause**:
+    *   Rename `self.stop_button` to `self.pause_button`.
+    *   Change the button text from "Stop" to "Pause".
+    *   Rename [stop_audio](file:///c:/Projects/VlcAmp/antigravity/main.py#114-116) method to `pause_audio`.
+    *   Update `pause_audio` to call `self.player.pause()` instead of `self.player.stop()`.
+    *   Ensure [play_audio](file:///c:/Projects/VlcAmp/antigravity/main.py#111-113) calls `self.player.play()`, which handles resuming from pause automatically.
+
+## Verification Plan
+
+### Manual Verification
+1.  **Audio Test**:
+    *   Run `python main.py`.
+    *   Drag and drop an MP3 file.
+    *   Click "Play". Verify audio starts.
+    *   Click "Pause". Verify audio pauses (does not stop/reset).
+    *   Click "Play". Verify audio resumes from the paused position.
+2.  **Video Test**:
+    *   Drag and drop an MP4 file.
+    *   Verify a black video window appears at the top of the app.
+    *   Click "Play". Verify video plays in the top window.
+    *   Click "Pause". Verify video pauses.
+    *   Click "Play". Verify video resumes.
+3.  **Switching**:
+    *   Switch between Audio and Video files to ensure the video frame appears/disappears correctly.

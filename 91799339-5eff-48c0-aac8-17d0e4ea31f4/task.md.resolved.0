@@ -1,0 +1,11 @@
+# Tasks
+
+- [/] Planning
+    - [x] Analyze [main.py](file:///c:/Projects/VlcAmp/antigravity/main.py) <!-- id: 0 -->
+    - [/] Create implementation plan <!-- id: 1 -->
+- [ ] Implementation
+    - [ ] Modify [main.py](file:///c:/Projects/VlcAmp/antigravity/main.py) to change Stop to Pause <!-- id: 2 -->
+    - [ ] Modify [main.py](file:///c:/Projects/VlcAmp/antigravity/main.py) to add video support <!-- id: 3 -->
+- [ ] Verification
+    - [ ] Verify Pause/Resume functionality <!-- id: 4 -->
+    - [ ] Verify Video display <!-- id: 5 -->
